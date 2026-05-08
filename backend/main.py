@@ -15,6 +15,10 @@ from scraper import scrape_company
 
 load_dotenv()
 
+# Startup diagnostic — shows in Railway Deploy Logs
+_api_key = os.environ.get("ANTHROPIC_API_KEY")
+print(f"[STARTUP] ANTHROPIC_API_KEY present: {bool(_api_key)}, length: {len(_api_key) if _api_key else 0}")
+
 app = FastAPI(
     title="Scoutly",
     description="Turn any company website into actionable B2B intelligence.",
