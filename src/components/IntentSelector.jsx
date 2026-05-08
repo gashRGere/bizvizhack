@@ -46,6 +46,7 @@ export default function IntentSelector({ value, onChange }) {
           const active = value === id
           return (
             <button
+              type="button"
               key={id}
               onClick={() => onChange(id)}
               className={`

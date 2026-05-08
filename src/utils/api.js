@@ -78,7 +78,9 @@ export const MOCK_REPORT = {
   intent: 'investment',
 }
 
-export const USE_MOCK = import.meta.env.VITE_USE_MOCK === 'true'
+// Use mock if explicitly set, or if no backend URL is configured
+export const USE_MOCK =
+  import.meta.env.VITE_USE_MOCK === 'true' || !import.meta.env.VITE_API_URL
 
 export async function analyzeCompanySafe(params) {
   if (USE_MOCK) {
