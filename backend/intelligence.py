@@ -10,9 +10,10 @@ import json
 import re
 from datetime import datetime, timezone
 
+import os
 import anthropic
 
-_client = anthropic.Anthropic()
+_client = anthropic.Anthropic(api_key=os.environ.get("ANTHROPIC_API_KEY"))
 
 # Cached once per session — 1024+ tokens qualifies for prompt caching
 _SYSTEM_PROMPT = """You are a senior business intelligence analyst specialising in B2B company research.
