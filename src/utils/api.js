@@ -110,6 +110,12 @@ export async function analyzeBatch(urls, intent, user_context) {
   return results.map((r, i) =>
     r.status === 'fulfilled'
       ? { ...r.value, _url: urls[i] }
-      : { _url: urls[i], _error: r.reason?.message || 'Failed' }
+      : {
+          _url: urls[i],
+          _error: r.reason?.response?.data?.detail
+            || (r.reason?.response?.status === 422 ? 'Could not extract content — site may block bots or require JavaScript' : null)
+            || r.reason?.message
+            || 'Analysis failed'
+        }
   )
 }
