@@ -107,6 +107,8 @@ def _parse_json(raw: str) -> dict:
     if raw.startswith("```"):
         raw = re.sub(r"^```[a-z]*\n?", "", raw)
         raw = re.sub(r"\n?```$", "", raw)
+    # Remove trailing commas before } or ] (common LLM mistake)
+    raw = re.sub(r",\s*([}\]])", r"\1", raw)
     return json.loads(raw)
 
 
