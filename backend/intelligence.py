@@ -121,7 +121,7 @@ def generate_intelligence_report(
 
     message = _client.messages.create(
         model="claude-sonnet-4-6",
-        max_tokens=2048,
+        max_tokens=4096,
         system=[
             {
                 "type": "text",
